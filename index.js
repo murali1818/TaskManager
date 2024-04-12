@@ -94,6 +94,7 @@ const filter=()=>{
    
 }
 
+
 const showdata=(filteredData)=>{
     const tabledata=document.getElementById("tabledata");
     tabledata.innerHTML="";
@@ -101,10 +102,46 @@ const showdata=(filteredData)=>{
         const row = document.createElement("tr");
         row.innerHTML =`<td>${tasks.task}</td>
                         <td>${tasks.description}</td>
-                        <td>${tasks.duration}</td>`
+                        <td>${tasks.duration}</td>
+                        <td><button>D</button><button>E</button></td>`
         tabledata.appendChild(row)
 })}
 showdata(taskData)
+
+
+let startTime;
+let start=false;
+let endTime;
+document.getElementById('startBtn').addEventListener('click', function() {
+    startTime = new Date();
+    start=true;
+    document.getElementById('result').innerText = "Calculating...";
+});
+document.getElementById('endBtn').addEventListener('click', function() {
+    if (!start) {
+        alert("Please start the timer first!");
+        return;
+    }
+    endTime = new Date();
+    const diff = endTime - startTime;
+    start=false;
+    const minutes = Math.round(diff / 60000); 
+    document.getElementById('result').innerText =  minutes + " minutes";
+});
+document.getElementById('taskForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const taskSelect = document.getElementById('taskSelect');
+    const descriptionInput = document.getElementById('descriptionInput');
+    const duration = document.getElementById('result').innerText.replace("Elapsed time: ", "").replace(" minutes", "");
+
+    const task = {
+        taskType: taskSelect.value,
+        description: descriptionInput.value,
+        duration: duration
+    };
+
+    taskData.push(task);
+});
 
 
 
