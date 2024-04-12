@@ -1,0 +1,63 @@
+table {
+    width: 50%;
+    border-collapse: collapse;
+}
+td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+    background-color: aquamarine;
+    
+}
+th {
+    border: 1px solid black;
+    padding: 5px;
+    text-align: left;
+    background-color:rgb(0, 201, 134);
+}
+.head{
+    text-align: center;
+    background-color: rgb(17, 140, 101);
+    border-radius: 5px;
+    border: 1px solid;
+    color: aliceblue;
+    padding: 10px;
+}
+.cat{
+    font-size: medium;
+}
+#taskSelect{
+    padding: 4px;
+    font-size: medium;
+    margin-bottom: 10px;
+    background-color: aquamarine;
+    border-radius: 5px;
+}
+.card {
+    position: absolute;
+    top: 140px;
+    right: 30px;
+    width:40% ; /* Adjust width as needed */
+    height: 90%; /* Take full height of the container */
+    background-color:aquamarine;
+    border: 1px solid #000000;
+    padding:20px;
+    border-radius: 5px;
+}
+.card h2{
+    text-align: center;
+}
+.card #taskSelect{
+    background-color:rgb(17, 140, 101);
+    color: white;
+}
+@media (max-width: 768px) {
+   table{
+    width: 100%;
+   }
+    .card {
+        width:90%;
+        position:static;
+        margin: 20px auto;
+    }   
+}

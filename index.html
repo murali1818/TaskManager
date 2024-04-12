@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="index.css">
+    <style>
+       
+    </style>
+</head>
+<body style="background-color:cadetblue;">
+    <h1 class="head">Task Manger</h1>
+    <label class="cat" for="taskSelect">Select Task:</label>
+    <select id="taskSelect" onchange="filter()">
+        <option value="all">All Tasks</option>
+        <option value="Meeting">Meeting</option>
+        <option value="Personal">Personal</option>
+        <option value="Project">Project</option>
+    </select>
+    <table>
+        <thead>
+            <th>Task</th>
+            <th>Discrption</th>
+            <th>Duration(minutes)</th>
+        </thead>
+        <tbody id="tabledata">
+        </tbody>
+    </table>
+    <div class="card">
+        <h2>ADD NEW TASK</h2>
+        <label class="cat" for="taskSelect">Select Task:</label>
+        <select id="taskSelect" onchange="settask()">
+            <option value="all">All Tasks</option>
+            <option value="Meeting">Meeting</option>
+            <option value="Personal">Personal</option>
+            <option value="Project">Project</option>
+        </select>
+        
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>
