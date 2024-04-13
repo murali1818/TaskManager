@@ -1,147 +1,157 @@
-const taskData = [
+let taskData=[
     {
-        task: "Meeting",
-        description: "team meeting",
-        duration: 160
+      "task": "Meeting",
+      "time": "05:30:00",
+      "description": "team meeting"
     },
     {
-        task: "Personal",
-        description: "Work out",
-        duration: 90
+      "task": "Personal",
+      "time": "02:15:00",
+      "description": "Work out"
     },
     {
-        task: "Project",
-        description: "project task",
-        duration: 120
+      "task": "Project",
+      "time": "03:45:00",
+      "description": "project task"
     },
     {
-        task: "Meeting",
-        description: "client meeting",
-        duration: 45
+      "task": "Meeting",
+      "time": "01:15:00",
+      "description": "client meeting"
     },
     {
-        task: "Personal",
-        description: "breakfast",
-        duration: 75
+      "task": "Personal",
+      "time": "01:45:00",
+      "description": "breakfast"
     },
     {
-        task: "Project",
-        description: "Project discution",
-        duration: 150
+      "task": "Project",
+      "time": "02:45:00",
+      "description": "Project discussion"
     },
     {
-        task: "Meeting",
-        description: "team meeting",
-        duration: 30
+      "task": "Meeting",
+      "time": "01:30:00",
+      "description": "Project meeting"
     },
     {
-        task: "Personal",
-        description: "personal task",
-        duration: 60
+      "task": "Personal",
+      "time": "01:30:00",
+      "description": "personal task"
     },
     {
-        task: "Project",
-        description: "project task",
-        duration: 180
+      "task": "Project",
+      "time": "02:15:00",
+      "description": "project task"
     },
     {
-        task: "Meeting",
-        description: "team meeting",
-        duration: 90
-    },
-    {
-        task: "Personal",
-        description: "personal task",
-        duration: 120
-    },
-    {
-        task: "Project",
-        description: "project task",
-        duration: 75
-    },
-    {
-        task: "Meeting",
-        description: "Project meetin",
-        duration: 60
-    },
-    {
-        task: "Personal",
-        description: "personal task",
-        duration: 30
-    },
-    {
-        task: "Project",
-        description: "project task",
-        duration: 150
-    },
-    {
-        task: "Meeting",
-        description: "team meeting",
-        duration: 120
+      "task": "Meeting",
+      "time": "02:00:00",
+      "description": "team meeting"
     }
-];
+  ] 
+// Declaring taskData as a global variable
+// const tasks = async () => {
+//     try {
+//         const response = await axios.get('http://localhost:3000/tasks');
+//         taskData = response.data;
+//         filter();
+//     } catch (error) {
+//         console.error('Error fetching tasks:', error);
+//     }
+// };
+// tasks();
 
-
-const filter=()=>{
-    const select=document.getElementById("taskSelect").value;
+//filter the selected task
+const filter = () => {
+    const select = document.getElementById("taskSelect").value;
     let filteredData;
-        if (select === "all") {
-            filteredData = taskData;
-        } else {
-            filteredData = taskData.filter(entry => entry.task === select);
-        }    
-        showdata(filteredData);
-   
+    if (select === "all") {
+        filteredData = taskData;
+    } else {
+        filteredData = taskData.filter(entry => entry.task === select);
+    }
+    showdata(filteredData);
+};
+//delete the task
+const deleteTask = (index) => {
+  taskData.splice(index, 1);
+  filter();
+};
+//task show
+const showdata = (filteredData) => {
+    const tabledata = document.getElementById("tabledata");
+    tabledata.innerHTML = "";
+    filteredData.map((task,index) => {
+        const row = document.createElement("tr");
+        row.innerHTML =`<td>${index+1}</td>
+                        <td>${task.task}</td>
+                        <td>${task.description}</td>
+                        <td>${task.time}</td>
+                        <td><button onclick=deleteTask(${index}) class="deleteBtn lightred">Delete</button><button  onclick=editTask(${index})>Edit</button></td>`;
+        tabledata.appendChild(row);
+    });
+};
+filter()
+//timer funtion
+let timer = null;
+let isRunning = false;
+let secondsValue = 0;
+let minutesValue = 0;
+let hoursValue = 0;
+let displayTime = "00:00:00";
+//start stop
+const startStop = () => {
+  if (isRunning) {
+    clearInterval(timer);
+    document.getElementById("startStopBtn").innerText = "Start";
+    document.getElementById("startStopBtn").style.backgroundColor = "green";
+  } else {
+    timer = setInterval(updateDisplay, 1000);
+    document.getElementById("startStopBtn").innerText = "Stop";
+    document.getElementById("startStopBtn").style.backgroundColor = "red";
+  }
+  isRunning = !isRunning;
+};
+//update timer
+const updateDisplay = () => {
+  secondsValue++;
+  if (secondsValue === 60) {
+    secondsValue = 0;
+    minutesValue++;
+    if (minutesValue === 60) {
+      minutesValue = 0;
+      hoursValue++;
+    }
+  }
+  displayTime = `${String(hoursValue).padStart(2, '0')}:${String(minutesValue).padStart(2, '0')}:${String(secondsValue).padStart(2, '0')}`;
+  document.getElementById("display").innerText = displayTime;
+};
+//reset funtion
+const reset = () => {
+  clearInterval(timer);
+  isRunning = false;
+  secondsValue = 0;
+  minutesValue = 0;
+  hoursValue = 0;
+  displayTime = "00:00:00";
+  document.getElementById("display").innerText = displayTime;
+  document.getElementById("startStopBtn").innerText = "Start";
+};
+
+//add task funtion
+document.getElementById('taskForm').addEventListener('submit',(e)=>{
+  e.preventDefault();
+  const task=document.getElementById("taskSel").value;
+  const dis=document.getElementById("taskDes").value;
+  const newTask = {
+    task:task,
+    time:displayTime,
+    description:dis
+};
+if(confirm("Are you confirm submit")){
+  taskData.push(newTask);
+  filter()
 }
 
-
-const showdata=(filteredData)=>{
-    const tabledata=document.getElementById("tabledata");
-    tabledata.innerHTML="";
-    filteredData.map((tasks)=>{
-        const row = document.createElement("tr");
-        row.innerHTML =`<td>${tasks.task}</td>
-                        <td>${tasks.description}</td>
-                        <td>${tasks.duration}</td>
-                        <td><button>D</button><button>E</button></td>`
-        tabledata.appendChild(row)
-})}
-showdata(taskData)
-
-
-let startTime;
-let start=false;
-let endTime;
-document.getElementById('startBtn').addEventListener('click', function() {
-    startTime = new Date();
-    start=true;
-    document.getElementById('result').innerText = "Calculating...";
-});
-document.getElementById('endBtn').addEventListener('click', function() {
-    if (!start) {
-        alert("Please start the timer first!");
-        return;
-    }
-    endTime = new Date();
-    const diff = endTime - startTime;
-    start=false;
-    const minutes = Math.round(diff / 60000); 
-    document.getElementById('result').innerText =  minutes + " minutes";
-});
-document.getElementById('taskForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    const taskSelect = document.getElementById('taskSelect');
-    const descriptionInput = document.getElementById('descriptionInput');
-    const duration = document.getElementById('result').innerText.replace("Elapsed time: ", "").replace(" minutes", "");
-
-    const task = {
-        taskType: taskSelect.value,
-        description: descriptionInput.value,
-        duration: duration
-    };
-
-    taskData.push(task);
-});
-
-
-
+})

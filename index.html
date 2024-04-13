@@ -9,26 +9,52 @@
        
     </style>
 </head>
-<body style="background-color:cadetblue;">
+<body style="background-color:rgb(167, 167, 167);">
     <h1 class="head">Task Manger</h1>
     <label class="cat" for="taskSelect">Select Task:</label>
     <select id="taskSelect" onchange="filter()">
-        <option value="all">All Tasks</option>
+        <option value="all">All</option>
         <option value="Meeting">Meeting</option>
         <option value="Personal">Personal</option>
         <option value="Project">Project</option>
     </select>
+    <div class="table">
     <table>
         <thead>
+            <th>S.no</th>
             <th>Task</th>
             <th>Discrption</th>
-            <th>Duration(minutes)</th>
+            <th>Duration</th>
             <th>Auction</th>
         </thead>
-        <tbody id="tabledata">
+        <tbody id="tabledata">  
         </tbody>
     </table>
-   
+    <div class="container">
+        <div class="timer">
+            <div id="display">00:00:00</div>
+            <div class="btnb">
+                <button id="startStopBtn" style="background-color: green;" onclick="startStop()">Start</button>
+                <button id="resetbtn" onclick="reset()">Reset</button>
+            </div>
+        </div>
+        <div class="task">
+            <h1>Add Task</h1>
+            <form id="taskForm">
+                <label class="cat" for="taskSelect">Select Task:</label>
+                <select id="taskSel" onchange="filter()">
+                    <option value="Meeting">Meeting</option>
+                    <option value="Personal">Personal</option>
+                    <option value="Project">Project</option>
+                </select>
+                <div>
+                    <textarea name="myTextarea" id="taskDes" placeholder="Task description" cols="40" rows="3" maxlength="500" required></textarea>
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
     <script src="index.js"></script>
 </body>
 </html>
