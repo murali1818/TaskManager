@@ -17,15 +17,28 @@ th {
     background-color:rgb(0, 201, 134);
     font-size: large;
 }
-.head{
+.head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     text-align: center;
-    width: 100%;
+    width: 96%;
+    margin-left: 1%;
     background-color: rgb(17, 140, 101);
     border-radius: 5px;
     border: 1px solid black;
     color: rgb(255, 255, 255);
-   
+    padding:1%;
 }
+
+.headbtn {
+    background-color: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    outline: none;
+}
+
 .cat{
     font-size:large;
 }
@@ -52,7 +65,7 @@ th {
     border-radius: 5px;
     text-align: center;
     padding:5%;
-    height: 150px;
+    height: 200px;
 }
 @media only screen and (max-width: 600px) {
     th,
@@ -147,3 +160,46 @@ button {
 .lightred {
     background-color:red;
   }
+
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: rgb(167, 167, 167);
+}
+
+#loginForm {
+    width: 300px;
+    margin: 100px auto;
+    padding: 20px;
+    background: linear-gradient(to bottom right, #4CAF50, #4CAF50, #5C7AEA);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+#loginForm h1 {
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+#loginForm input[type="text"],
+#loginForm input[type="password"] {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+}
+
+#loginForm button {
+    width: 50%;
+    padding: 10px;
+    background-color: #4c5efd;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
