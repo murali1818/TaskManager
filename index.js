@@ -309,8 +309,8 @@ const editTask = (index) => {
   task.value = data.task;
   dis.value = data.description;
   btn.innerHTML="Update"
-  cancel.innerHTML="Cancel"
   const cancelBtn = document.createElement("button");
+  cancelBtn.innerText = "Cancel";
   cancelBtn.style.backgroundColor = "red";
   cancel.appendChild(cancelBtn);
   cancelBtn.onclick = cancelEdit;
@@ -320,6 +320,7 @@ const cancelEdit = () => {
   document.getElementById("addtask").innerText = "Add Task";
   document.getElementById("btnn").innerText = "Submit";
   document.getElementById("cancel").remove();
+  i = undefined;
 };
 // Handle update
 const handleUpdate = (index,e) => {
@@ -334,6 +335,7 @@ const handleUpdate = (index,e) => {
   filter();
   alert("Task Updated")
   document.getElementById("addtask").innerText = "Add Task";
+  i = undefined;
 };
 
 const handleSubmit = (e) => {
