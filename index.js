@@ -263,16 +263,17 @@ let taskData = [
 ];
 
 function login() {
-  const username = document.getElementById("username").value;
+  const email = document.getElementById("username").value;
   const password = document.getElementById("password").value;
-  if (username === "murali1818" && password === "100") {
+  
+  if (user.find(e=>e.email===email&&e.password===password)) {
       document.getElementById("loginForm").style.display = "none";
       document.getElementById("taskManager").style.display = "block";
   } else {
       alert("Invalid username or password");
   }
 }
-
+//logout funtion
 function logout() {
   document.getElementById("loginForm").style.display = "block";
   document.getElementById("taskManager").style.display = "none";
@@ -320,7 +321,6 @@ const cancelEdit = () => {
   document.getElementById("addtask").innerText = "Add Task";
   document.getElementById("btnn").innerText = "Submit";
   document.getElementById("cancel").remove();
-  i = undefined;
 };
 // Handle update
 const handleUpdate = (index,e) => {
@@ -361,8 +361,7 @@ const checkbtn=(e)=>{
   }
   if(btn.innerText=="Update"){
     console.log(btn.innerText)
-    handleUpdate(i,e);
-    
+    handleUpdate(i,e); 
    }
 }
 document.getElementById("taskForm").addEventListener("submit",checkbtn);
