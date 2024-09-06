@@ -45,7 +45,7 @@ th {
 #taskSelect{
     padding: 4px;
     font-size: medium;
-    background-color: aquamarine;
+    background-color: rgb(165, 255, 225);
     border-radius: 5px;
     margin-bottom: 10px;
 }
